@@ -1,13 +1,15 @@
-// Clase Vista: Muestra la informacion al usuario
-class MenuVista {
-    mostrarPlatos(platos: Plato[]): void {
+// Clase Vista: Muestra la informacion al usuario (la interfaz de usuario)
+import { Plato } from './Plato'; 
+
+export class MenuVista {
+    public mostrarPlatos(platos: Plato[]): void {
         console.log("Menú del Restaurante:");
-        platos.forEach((plato, i) => {
-            console.log(`${i + 1}. ${plato.getNombre()} - $${plato.getPrecio()}`);
+        platos.forEach(plato=> {
+            console.log(`- ${plato.getNombre()} : $${plato.getPrecio().toFixed(2)}`);
         });
     }
 
-    mostrarMensaje(msg: string): void {
-        console.log(` ${msg}`);
+    public mostrarMensaje(msg: string): void {
+        console.log(msg);
     }
 }
