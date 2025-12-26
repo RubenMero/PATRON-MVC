@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generación de Reportes - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="customNotification"></div>
+    <div class="main-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM">
+                <span class="system-name">Parking ULEAM</span>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item"><a href="dashboard.html"><span class="icon"></span> Dashboard</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-ingreso"><a href="registro-ingreso.html"><span class="icon"></span> Registrar Ingreso</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-salida"><a href="registro-salida.html"><span class="icon"></span> Registrar Salida</a></li>
+                <li class="sidebar-nav-item" data-permission="consulta-ingresos"><a href="consulta-ingresos.html"><span class="icon"></span> Consultar Ingresos</a></li>
+                <li class="sidebar-nav-item" data-permission="vehiculos-registrados-r"><a href="vehiculos-registrados.html"><span class="icon"></span> Vehículos Registrados</a></li>
+                <li class="sidebar-nav-item" data-permission="gestion-usuarios"><a href="gestion-usuarios.html"><span class="icon"></span> Gestión de Usuarios</a></li>
+                <li class="sidebar-nav-item active" data-permission="reportes"><a href="reportes.html"><span class="icon"></span> Reportes</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="user-info-top">
+                    <span class="user-role-label">ROL</span>
+                    <span class="user-name user-name-top">👤 Usuario</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <main class="container">
+                <h2>Generación de Reportes</h2>
+                
+                <div class="section-card search-filter-card">
+                    <h3>Selección de Parámetros</h3>
+                    <form id="reporteForm">
+                        <div class="filter-controls-reporte" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div class="form-group" style="flex: 1 1 200px;">
+                                <label for="tipoReporte">Tipo de Reporte</label>
+                                <select id="tipoReporte" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="ingresos">Ingresos y Salidas (Histórico)</option>
+                                    <option value="usuarios">Estadísticas por Tipo de Usuario</option>
+                                    <option value="permanencia">Tiempos de Permanencia</option>
+                                    <option value="vehiculos">Listado de Vehículos Registrados</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="flex: 1 1 150px;" id="groupFechaDesde">
+                                <label for="fechaDesde">Fecha Desde</label>
+                                <input type="date" id="fechaDesde" required>
+                            </div>
+                            <div class="form-group" style="flex: 1 1 150px;" id="groupFechaHasta">
+                                <label for="fechaHasta">Fecha Hasta</label>
+                                <input type="date" id="fechaHasta" required>
+                            </div>
+                        </div>
+                        <div class="filter-actions mt-20">
+                            <button class="btn btn-primary" type="submit">Generar Reporte</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="section-card data-results-card" id="reporteVisualizacion" style="display: none;">
+                    <h3 id="tituloReporteVisual">Reporte Generado</h3>
+                    <div class="data-header" style="display: flex; justify-content: flex-end;">
+                        <div class="export-buttons" id="reportExportButtons">
+                            <button class="btn btn-success" onclick="descargarReporte('Excel')">Exportar Excel</button>
+                            <button class="btn btn-secondary" onclick="descargarReporte('PDF')">Imprimir / PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div id="reportContent">
+                        <p>Contenido del reporte...</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script src="reportes.js"></script>
+</body>
+</html>

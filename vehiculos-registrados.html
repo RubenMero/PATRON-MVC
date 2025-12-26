@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehículos Registrados - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="customNotification"></div>
+    <div class="main-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM">
+                <span class="system-name">Parking ULEAM</span>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item"><a href="dashboard.html"><span class="icon"></span> Dashboard</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-ingreso"><a href="registro-ingreso.html"><span class="icon"></span> Registrar Ingreso</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-salida"><a href="registro-salida.html"><span class="icon"></span> Registrar Salida</a></li>
+                <li class="sidebar-nav-item" data-permission="consulta-ingresos"><a href="consulta-ingresos.html"><span class="icon"></span> Consultar Ingresos</a></li>
+                <li class="sidebar-nav-item active" data-permission="vehiculos-registrados-r"><a href="vehiculos-registrados.html"><span class="icon"></span> Vehículos Registrados</a></li>
+                <li class="sidebar-nav-item" data-permission="gestion-usuarios"><a href="gestion-usuarios.html"><span class="icon"></span> Gestión de Usuarios</a></li>
+                <li class="sidebar-nav-item" data-permission="reportes"><a href="reportes.html"><span class="icon"></span> Reportes</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="user-info-top">
+                    <span class="user-role-label">ROL</span>
+                    <span class="user-name user-name-top">👤 Usuario</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <main class="container">
+                <h2>Administración de Vehículos Autorizados</h2>
+
+                <div class="section-card form-card" id="vehiculoFormCard">
+                    <h3>Registro / Edición de Vehículo</h3>
+                    <form id="vehiculoForm">
+                        <input type="hidden" id="vehiculoId" value="">
+                        <div class="form-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                            <div class="form-group">
+                                <label for="placa">Placa</label>
+                                <input type="text" id="placa" name="placa" maxlength="8" placeholder="Ej: ABC-1234" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="propietario">Nombre Propietario</label>
+                                <input type="text" id="propietario" name="propietario" placeholder="Nombre Completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipoUsuario">Tipo de Usuario</label>
+                                <select id="tipoUsuario" name="tipoUsuario" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="Estudiante">Estudiante</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Administrativo">Administrativo</option>
+                                    <option value="Visitante">Visitante</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="marca">Marca</label>
+                                <input type="text" id="marca" name="marca" placeholder="Ej: Toyota">
+                            </div>
+                            <div class="form-group">
+                                <label for="modelo">Modelo</label>
+                                <input type="text" id="modelo" name="modelo" placeholder="Ej: Corolla">
+                            </div>
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select id="estado" name="estado" required>
+                                    <option value="Autorizado">Autorizado</option>
+                                    <option value="Suspendido">Suspendido</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="reset" class="btn btn-secondary" id="btnLimpiar">Limpiar / Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="btnSubmit">Registrar Vehículo</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card data-results-card">
+                    <div class="data-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Catálogo de Vehículos Autorizados</h3>
+                        <div class="export-buttons">
+                            <button class="btn btn-success" onclick="exportarCSV()">Exportar CSV</button>
+                        </div>
+                    </div>
+                    
+                    <table class="data-table" id="tablaVehiculos">
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Propietario</th>
+                                <th>Tipo Usuario</th>
+                                <th>Marca/Modelo</th>
+                                <th>Estado</th>
+                                <th id="thAcciones">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehiculosTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script src="vehiculos-registrados.js"></script>
+</body>
+</html>

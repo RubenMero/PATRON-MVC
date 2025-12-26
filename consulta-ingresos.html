@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Ingresos - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="customNotification"></div>
+    <div class="main-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM">
+                <span class="system-name">Parking ULEAM</span>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item"><a href="dashboard.html"><span class="icon"></span> Dashboard</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-ingreso"><a href="registro-ingreso.html"><span class="icon"></span> Registrar Ingreso</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-salida"><a href="registro-salida.html"><span class="icon"></span> Registrar Salida</a></li>
+                <li class="sidebar-nav-item active" data-permission="consulta-ingresos"><a href="consulta-ingresos.html"><span class="icon"></span> Consultar Ingresos</a></li>
+                <li class="sidebar-nav-item" data-permission="vehiculos-registrados-r"><a href="vehiculos-registrados.html"><span class="icon"></span> Vehículos Registrados</a></li>
+                <li class="sidebar-nav-item" data-permission="gestion-usuarios"><a href="gestion-usuarios.html"><span class="icon"></span> Gestión de Usuarios</a></li>
+                <li class="sidebar-nav-item" data-permission="reportes"><a href="reportes.html"><span class="icon"></span> Reportes</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="user-info-top">
+                    <span class="user-role-label">ROL</span>
+                    <span class="user-name user-name-top">👤 Usuario</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <main class="container">
+                <h2>Consulta - Historial de Ingresos</h2>
+                <div class="section-card search-filter-card">
+                    <h3>Filtros de Búsqueda</h3>
+                    <div class="filter-controls">
+                        <div class="form-group-inline" style="display: flex; gap: 10px;">
+                            <div class="form-group">
+                                <label for="searchPlaca">Placa</label>
+                                <input type="text" id="searchPlaca" placeholder="Placa (ABC-1234)">
+                            </div>
+                            <div class="form-group">
+                                <label for="searchFecha">Fecha</label>
+                                <input type="date" id="searchFecha">
+                            </div>
+                        </div>
+                        <div class="filter-actions" style="margin-top: 15px;">
+                            <button class="btn btn-primary" onclick="buscarIngresos()">Buscar</button>
+                            <button class="btn btn-secondary" onclick="limpiarBusqueda()">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-card data-results-card">
+                    <div class="data-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Resultados de la Consulta</h3>
+                        <div class="export-buttons" id="exportButtons">
+                            <button class="btn btn-export-excel btn-success" onclick="exportarExcel()">Exportar Excel</button>
+                            <button class="btn btn-secondary" onclick="exportarPDF()">Exportar PDF</button>
+                        </div>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID Reg.</th>
+                                <th>Placa</th>
+                                <th>Tipo Vehiculo</th>
+                                <th>ID Conductor</th>
+                                <th>Tipo Usuario</th>
+                                <th>Hora Ingreso</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableConsulta">
+                            </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script src="consulta-ingresos.js"></script>
+</body>
+</html>

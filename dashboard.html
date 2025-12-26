@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="customNotification"></div>
+    <div class="main-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM">
+                <span class="system-name">Parking ULEAM</span>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item active"><a href="dashboard.html"><span class="icon"></span> Dashboard</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-ingreso"><a href="registro-ingreso.html"><span class="icon"></span> Registrar Ingreso</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-salida"><a href="registro-salida.html"><span class="icon"></span> Registrar Salida</a></li>
+                <li class="sidebar-nav-item" data-permission="consulta-ingresos"><a href="consulta-ingresos.html"><span class="icon"></span> Consultar Ingresos</a></li>
+                <li class="sidebar-nav-item" data-permission="vehiculos-registrados-r"><a href="vehiculos-registrados.html"><span class="icon"></span> Vehículos Registrados</a></li>
+                <li class="sidebar-nav-item" data-permission="gestion-usuarios"><a href="gestion-usuarios.html"><span class="icon"></span> Gestión de Usuarios</a></li>
+                <li class="sidebar-nav-item" data-permission="reportes"><a href="reportes.html"><span class="icon"></span> Reportes</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="user-info-top">
+                    <span class="user-role-label">ROL</span>
+                    <span class="user-name user-name-top">👤 Usuario</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <main class="container">
+                <h2>Panel Principal</h2>
+                <div class="cards-container">
+                    <div class="info-card card-blue">
+                        <h3>Total Ingresos (Hoy)</h3>
+                        <p class="card-number" id="totalIngresos">0</p>
+                        <p class="card-subtitle">Registros en el día</p>
+                    </div>
+                    <div class="info-card card-green">
+                        <h3>Vehículos en Campus</h3>
+                        <p class="card-number" id="vehiculosEnCampus">0</p>
+                        <p class="card-subtitle">Actualmente dentro</p>
+                    </div>
+                    <div class="info-card card-orange">
+                        <h3>Capacidad Ocupada</h3>
+                        <p class="card-number" id="capacidadOcupada">0%</p>
+                        <p class="card-subtitle" id="ocupacionDetalle">0 / 0 espacios</p>
+                    </div>
+                    <div class="info-card card-purple">
+                        <h3>Salidas Registradas</h3>
+                        <p class="card-number" id="salidasRegistradas">0</p>
+                        <p class="card-subtitle">Movimientos de salida hoy</p>
+                    </div>
+                </div>
+
+                <div class="section-card chart-container">
+                    <h3>Actividad de Ingresos por Hora (Hoy)</h3>
+                    <div class="chart">
+                        <p>Gráfico simulado de ingresos por hora.</p>
+                        </div>
+                </div>
+
+                <div class="section-card">
+                    <h3>Últimos 5 Movimientos (Ingreso/Salida)</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Placa</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ultimosMovimientosTable">
+                            </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

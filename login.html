@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body onload="checkSession(true)">
+    <div id="customNotification"></div>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM"> 
+            </div>
+            <h2>Sistema de Control Acceso Vehicular</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="<input-icon-group">
+                    <input type="text" id="usuario" placeholder="Usuario o correo institucional" autocomplete="username" required>
+                    <span class="error-message" id="usuarioError"></span>
+                </div>
+                <div class="form-group">
+                    <div class="<input-icon-group"></div>
+                    <input type="password" id="password" placeholder="Contraseña" autocomplete="current-password" required>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                
+                <div class="form-group remember-me-and-forgot" style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 5px; /* Ajuste del margen para centrado */
+                ">
+                    <div class="remember-me-group">
+                         <input type="checkbox" id="rememberMe">
+                         <label for="rememberMe">Recordar sesión</label>
+                    </div>
+                    <a href="#" class="forgot-link" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnLogin">
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="footer">
+         © Universidad Laica Eloy Alfaro de Manabí
+        </footer>
+    <script src="scripts.js"></script>
+    <script src="login.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked; 
+
+            // Asegúrate de actualizar tu función `login` en `scripts.js` para usar `rememberMe`
+            window.login(usuario, password, rememberMe); 
+        });
+    </script>
+</body>
+</html>

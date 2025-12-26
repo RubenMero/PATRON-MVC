@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Salida - Sistema ULEAM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="customNotification"></div>
+    <div class="main-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="logo-uleam.png" alt="Logo ULEAM">
+                <span class="system-name">Parking ULEAM</span>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item"><a href="dashboard.html"><span class="icon"></span> Dashboard</a></li>
+                <li class="sidebar-nav-item" data-permission="registro-ingreso"><a href="registro-ingreso.html"><span class="icon"></span> Registrar Ingreso</a></li>
+                <li class="sidebar-nav-item active" data-permission="registro-salida"><a href="registro-salida.html"><span class="icon"></span> Registrar Salida</a></li>
+                <li class="sidebar-nav-item" data-permission="consulta-ingresos"><a href="consulta-ingresos.html"><span class="icon"></span> Consultar Ingresos</a></li>
+                <li class="sidebar-nav-item" data-permission="vehiculos-registrados-r"><a href="vehiculos-registrados.html"><span class="icon"></span> Vehículos Registrados</a></li>
+                <li class="sidebar-nav-item" data-permission="gestion-usuarios"><a href="gestion-usuarios.html"><span class="icon"></span> Gestión de Usuarios</a></li>
+                <li class="sidebar-nav-item" data-permission="reportes"><a href="reportes.html"><span class="icon"></span> Reportes</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="user-info-top">
+                    <span class="user-role-label">ROL</span>
+                    <span class="user-name user-name-top">👤 Usuario</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <main class="container">
+                <h2>Registro de Salida de Vehículo</h2>
+                <div class="search-card section-card">
+                    <h3>Buscar Vehículo por Placa</h3>
+                    <div class="search-form-salida">
+                        <input type="text" id="buscarPlaca" name="buscarPlaca" maxlength="8" placeholder="Ingrese la Placa (Ej: ABC-1234)" required>
+                        <button class="btn btn-primary" type="button" onclick="buscarVehiculoSalida()">Buscar</button>
+                    </div>
+                </div>
+                
+                <div class="section-card form-card details-card" id="detallesVehiculo" style="display: none;">
+                    <h3>Detalles del Ingreso Activo</h3>
+                    <div class="details-grid">
+                        <div class="detail-item"><strong>Placa:</strong> <span id="infoPlaca"></span></div>
+                        <div class="detail-item"><strong>Tipo:</strong> <span id="infoTipo"></span></div>
+                        <div class="detail-item"><strong>ID Conductor:</strong> <span id="infoID"></span></div>
+                        <div class="detail-item"><strong>Hora Ingreso:</strong> <span id="infoHoraIngreso"></span></div>
+                        <div class="detail-item"><strong>Fecha Ingreso:</strong> <span id="infoFechaIngreso"></span></div>
+                        <div class="detail-item"><strong>Tiempo de Permanencia:</strong> <span id="tiempoPermanencia"></span></div>
+                    </div>
+                    <hr>
+                    <form id="registroSalidaForm">
+                        <div class="form-group-salida">
+                            <label for="idSalida">Confirmar ID/Cédula del Conductor</label>
+                            <input type="text" id="idSalida" name="idSalida" maxlength="10" placeholder="Ingrese ID para validar la salida" required>
+                            <span class="error-message" id="idSalida-error"></span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelarSalida()">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Confirmar Salida</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="section-card last-movements" id="sinResultados" style="display: none;">
+                    <h3>No se encontró el vehículo</h3>
+                    <p class="error-message-large">Verifique la placa o asegúrese que tenga un registro de ingreso activo.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script src="registro-salida.js"></script>
+</body>
+</html>
